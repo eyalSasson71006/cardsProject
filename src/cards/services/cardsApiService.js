@@ -39,9 +39,7 @@ export const deleteCard = async (id) => {
     }
 }
 
-export const createCard = async (card) => {    
-    console.log(card);
-    
+export const createCard = async (card) => {        
     try {
         const {data} = await axios.post(apiUrl, normalizeCard(card))        
         return data
@@ -52,8 +50,8 @@ export const createCard = async (card) => {
 
 export const editCard = async (id, card) => {
     try {
-        const response = await axios.put(`${apiUrl}/${id}`, card)
-        return response.data
+        const {data} = await axios.put(`${apiUrl}/${id}`, card)
+        return data
     } catch (error) {
         throw new Error(error);
     }

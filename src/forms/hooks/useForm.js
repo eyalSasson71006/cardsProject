@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 export default function useForm(initialForm, schema, handleSubmit) {
     const [data, setData] = useState(initialForm);
     const [errors, setErrors] = useState({});
-
+    
     const validateProperty = useCallback((name, value) => {
         let joiSchema = Joi.object({ [name]: schema[name] });
         let { error } = joiSchema.validate({ [name]: value });
@@ -38,7 +38,7 @@ export default function useForm(initialForm, schema, handleSubmit) {
 
     const validateForm = useCallback(() => {
         let joiSchema = Joi.object(schema);
-        let { error } = joiSchema.validate(data);
+        let { error } = joiSchema.validate(data);        
         return Boolean(!error);
     },[schema, data]);  
 

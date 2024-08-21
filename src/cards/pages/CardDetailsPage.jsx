@@ -17,7 +17,7 @@ export default function CardDetailsPage() {
 
 	useEffect(() => {
 		getCardsById(id);
-	}, [id, card]);
+	}, [id]);	
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;

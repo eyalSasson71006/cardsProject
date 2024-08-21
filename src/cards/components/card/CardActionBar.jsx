@@ -8,21 +8,24 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import { useCurrentUser } from "../../../users/providers/UserProvider";
 import useCards from "../../hooks/useCards";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
 export default function CardActionBar({ card }) {
 	const { user } = useCurrentUser();
-	const { handleDelete, handleEdit, handleLike } = useCards();
+	const { handleDelete, handleLike } = useCards();
 	const [liked, setLiked] = useState(card.likes.includes(user._id));
+	const navigate = useNavigate()
 
 	function handleRender() {
 		if (!user) return false;
 		if (user.isAdmin || card.user_id == user._id) return true;
 	}
 
-	async function handleLikeClick (){
-		setLiked(await handleLike(card._id))
+	async function handleLikeClick() {
+		setLiked(await handleLike(card._id));
 	}
-	
+
 	return (
 		<>
 			<CardActions sx={{ justifyContent: "space-between" }}>
@@ -45,7 +48,11 @@ export default function CardActionBar({ card }) {
 						<IconButton onClick={() => handleDelete(card._id)}>
 							<DeleteIcon />
 						</IconButton>
-						<IconButton onClick={() => handleEdit(card._id)}>
+						<IconButton
+							onClick={() =>
+								navigate(ROUTES.EDIT_CARD + "/" + card._id)
+							}
+						>
 							<ModeEditIcon />
 						</IconButton>
 					</Box>
