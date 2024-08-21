@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
 import { useCurrentUser } from "../providers/UserProvider";
-import { login, signup } from "../services/usersApiService";
+import { getUserData, login, signup } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
 import { useSnack } from "../../providers/SnackbarProvider";
+import useAxios from "../../hooks/useAxios";
 
 export default function useUsers() {
     const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +14,8 @@ export default function useUsers() {
     const { setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
     const setSnack = useSnack()	
+
+    useAxios()
 
     const handleLogin = useCallback(async (userLogin) => {
         setError(null)
@@ -51,8 +54,22 @@ export default function useUsers() {
         }
         setIsLoading(false);
     }, []);
+    
+    const getUserById = useCallback(async (id) => {
+        setIsLoading(true);
+        setError(null);
+        try {            
+            let user = await getUserData(id);
+            setIsLoading(false);
+            return user
+        } catch (err) {
+            setError(err.message);
+            setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    }, []);
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup };
+    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById };
 }
 
 

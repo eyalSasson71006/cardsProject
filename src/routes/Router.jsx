@@ -12,6 +12,8 @@ import FavoriteCards from "../cards/pages/FavoriteCards.jsx";
 import CardDetailsPage from "../cards/pages/CardDetailsPage.jsx";
 import AddCardPage from "../cards/pages/AddCardPage.jsx";
 import EditCardPage from "../cards/pages/EditCardPage.jsx";
+import UserProfilePage from "../users/pages/UserProfilePage.jsx";
+import EditUserPage from "../users/pages/EditUserPage.jsx";
 
 export default function Router() {
 	return (
@@ -32,6 +34,8 @@ export default function Router() {
 				path={ROUTES.EDIT_CARD + "/:id"}
 				element={<EditCardPage />}
 			/>
+			<Route path={ROUTES.USER_PROFILE} element={<UserProfilePage />} />
+			<Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
 
 			<Route path={ROUTES.SANDBOX} element={<SandboxPage />} />
 			<Route path="*" element={<ErrorPage />} />

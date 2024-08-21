@@ -5,19 +5,21 @@ import Avatar from "@mui/material/Avatar";
 import useUsers from "../../../users/hooks/useUsers";
 import { Menu, MenuItem } from "@mui/material";
 import { useCurrentUser } from "../../../users/providers/UserProvider";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
 export default function Logged() {
 	const { handleLogout } = useUsers();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
-	const {user} = useCurrentUser()
+	const { user } = useCurrentUser();
+	const navigate = useNavigate();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
 
 	const handleClose = () => {
-		console.log(user);
 		setAnchorEl(null);
 	};
 
@@ -32,7 +34,22 @@ export default function Logged() {
 				</IconButton>
 			</Tooltip>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-				<MenuItem onClick={handleClose}>My account</MenuItem>
+				<MenuItem
+					onClick={() => {
+						navigate(ROUTES.USER_PROFILE);
+						handleClose();
+					}}
+				>
+					My account
+				</MenuItem>
+				<MenuItem
+					onClick={() => {
+						navigate(ROUTES.EDIT_USER);
+						handleClose();
+					}}
+				>
+					Edit account
+				</MenuItem>
 				<MenuItem onClick={handleLogout}>Logout</MenuItem>
 			</Menu>
 		</>
