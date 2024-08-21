@@ -14,7 +14,7 @@ import ROUTES from "../../../routes/routesModel";
 export default function CardActionBar({ card }) {
 	const { user } = useCurrentUser();
 	const { handleDelete, handleLike } = useCards();
-	const [liked, setLiked] = useState(card.likes.includes(user._id));
+	const [liked, setLiked] = useState(user && card.likes.includes(user._id));
 	const navigate = useNavigate()
 
 	function handleRender() {

@@ -18,7 +18,7 @@ export default function AddCardPage() {
 		useForm(initialCardForm, cardSchema, handleCreateCard);
 
 
-	if (!user && !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
+	if (!user || !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
 
 	return (
 		<Container

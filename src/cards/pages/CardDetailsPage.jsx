@@ -9,6 +9,7 @@ import useCards from "../hooks/useCards";
 import Error from "../../components/Error";
 import { changeLikeStatus } from "../services/cardsApiService";
 import { useCurrentUser } from "../../users/providers/UserProvider";
+import CardActionBar from "../components/card/CardActionBar";
 
 export default function CardDetailsPage() {
 	const { card, getCardsById, isLoading, error } = useCards();
@@ -84,12 +85,7 @@ export default function CardDetailsPage() {
 						fontWeight: "bold",
 					}}
 				>
-					{card.likes.length}
-					<IconButton onClick={() => changeLikeStatus(id)}>
-						<FavoriteIcon
-							color={card.likes.includes(user._id) ? "error" : ""}
-						/>
-					</IconButton>
+					<CardActionBar card={card}/>
 				</Typography>
 			</Container>
 		</Box>

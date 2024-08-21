@@ -9,6 +9,7 @@ import cardSchema from "../models/cardSchema";
 import useForm from "../../forms/hooks/useForm";
 import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import { useCurrentUser } from "../../users/providers/UserProvider";
+import ROUTES from "../../routes/routesModel";
 
 export default function EditCardPage() {
 	const { handleEdit, getCardsById, isLoading, error } = useCards();
@@ -34,7 +35,7 @@ export default function EditCardPage() {
 		getData();
 	}, [id]);
 
-	if (!user && !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
+	if (!user || !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 
