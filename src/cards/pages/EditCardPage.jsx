@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import useCards from "../hooks/useCards";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { Container } from "@mui/material";
 import CardForm from "../components/CardForm";
@@ -8,9 +8,11 @@ import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardSchema from "../models/cardSchema";
 import useForm from "../../forms/hooks/useForm";
 import mapCardToModel from "../helpers/normalization/mapCardToModel";
+import { useCurrentUser } from "../../users/providers/UserProvider";
 
 export default function EditCardPage() {
-	const { card, handleEdit, getCardsById, isLoading, error } = useCards();
+	const { handleEdit, getCardsById, isLoading, error } = useCards();
+	const {user} = useCurrentUser()
 	const { id } = useParams();
 	const {
 		data,
@@ -32,6 +34,7 @@ export default function EditCardPage() {
 		getData();
 	}, [id]);
 
+	if (!user && !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 

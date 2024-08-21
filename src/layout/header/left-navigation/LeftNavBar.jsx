@@ -13,8 +13,9 @@ export default function LeftNavBar() {
 		<Box sx={{ display: "flex", alignItems: "center" }}>
 			<LogoIcon />
 			<Logo />
-			{user && <NavBarItem to={ROUTES.CARDS} label={"Cards"} />}
 			<NavBarItem to={ROUTES.ABOUT} label={"About"} />
+			{user && <NavBarItem to={ROUTES.CARDS} label={"FAV CARDS"} />}
+			{user && user.isBusiness && <NavBarItem to={ROUTES.MY_CARDS} label={"MY CARDS"} />}
 			<NavBarItem to={ROUTES.SANDBOX} label={"SandBox"} />
 		</Box>
   );
