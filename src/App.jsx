@@ -4,6 +4,7 @@ import Layout from "./layout/Layout";
 import UserProvider from "./users/providers/UserProvider";
 import CustomThemeProvider from "./providers/CustomThemeProvider";
 import SnackbarProvider from "./providers/SnackbarProvider";
+import SearchProvider from "./providers/SearchProvider";
 
 function App() {
 	return (
@@ -11,13 +12,16 @@ function App() {
 			<CustomThemeProvider>
 				<SnackbarProvider>
 					<UserProvider>
-						<Layout>
-							<Router />
-						</Layout>
+						<SearchProvider>
+							<Layout>
+								<Router />
+							</Layout>
+						</SearchProvider>
 					</UserProvider>
 				</SnackbarProvider>
 			</CustomThemeProvider>
-		// </BrowserRouter>
+			//{" "}
+		</BrowserRouter>
 	);
 }
 

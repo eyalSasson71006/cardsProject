@@ -1,22 +1,30 @@
-import React, { useEffect } from 'react'
-import PageHeader from '../../components/PageHeader';
-import { useCurrentUser } from '../../users/providers/UserProvider';
-import useCards from '../hooks/useCards';
-import CardsFeedback from '../components/CardsFeedback';
-import AddNewCardButton from '../components/AddNewCardButton';
-import { Navigate } from 'react-router-dom';
-import ROUTES from '../../routes/routesModel';
+import React, { useEffect } from "react";
+import PageHeader from "../../components/PageHeader";
+import { useCurrentUser } from "../../users/providers/UserProvider";
+import useCards from "../hooks/useCards";
+import CardsFeedback from "../components/CardsFeedback";
+import AddNewCardButton from "../components/AddNewCardButton";
+import { Navigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function MyCards() {
 	const { user } = useCurrentUser();
-	const { myCards, error, isLoading, HandleGetMyCards, handleDelete, handleLike } =
-		useCards();
+	const {
+		myCards,
+		error,
+		isLoading,
+		HandleGetMyCards,
+		handleDelete,
+		handleLike,
+	} = useCards();
+	const { searchInput } = useSearchContext();
 
 	useEffect(() => {
 		HandleGetMyCards();
 	}, []);
 
-  if(!user) return <Navigate to={ROUTES.CARDS}/>
+	if (!user) return <Navigate to={ROUTES.CARDS} />;
 
 	return (
 		<>
@@ -26,7 +34,9 @@ export default function MyCards() {
 			/>
 			<CardsFeedback
 				isLoading={isLoading}
-				cards={myCards}
+				cards={myCards.filter((card) =>
+					card.title.includes(searchInput)
+				)}
 				error={error}
 				handleDelete={handleDelete}
 				handleLike={handleLike}
@@ -35,4 +45,3 @@ export default function MyCards() {
 		</>
 	);
 }
-

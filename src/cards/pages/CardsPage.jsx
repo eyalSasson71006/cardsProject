@@ -4,14 +4,15 @@ import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
 import AddNewCardButton from "../components/AddNewCardButton";
 import { useCurrentUser } from "../../users/providers/UserProvider";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function CardsPage() {
 	const { user } = useCurrentUser();
-	const { cards, error, isLoading, getAllCards} =
-		useCards();
+	const { cards, error, isLoading, getAllCards } = useCards();
+	const { searchInput } = useSearchContext();
 
 	useEffect(() => {
-		getAllCards();		
+		getAllCards();
 	}, []);
 
 	return (
@@ -22,7 +23,7 @@ export default function CardsPage() {
 			/>
 			<CardsFeedback
 				isLoading={isLoading}
-				cards={cards}
+				cards={cards.filter((card) => card.title.includes(searchInput))}
 				error={error}
 			/>
 			{user && user.isBusiness && <AddNewCardButton />}
