@@ -24,8 +24,6 @@ export default function UserProfilePage() {
 		getData();
 	}, [user]);
 
-	console.log(userData);
-
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 	return (

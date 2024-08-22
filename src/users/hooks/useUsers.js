@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { useCurrentUser } from "../providers/UserProvider";
-import { getUserData, login, signup } from "../services/usersApiService";
+import { editUserData, getUserData, login, signup } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
 import { useSnack } from "../../providers/SnackbarProvider";
 import useAxios from "../../hooks/useAxios";
+import normalizeUserToEdit from "../helpers/normalization/normalizeUserToEdit";
 
 export default function useUsers() {
     const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,7 @@ export default function useUsers() {
                 email: user.email,
                 password: user.password
             });
+            setSnack("success", "Signed up successfully!")
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
@@ -60,7 +62,7 @@ export default function useUsers() {
         setError(null);
         try {            
             let user = await getUserData(id);
-            setIsLoading(false);
+            setIsLoading(false);            
             return user
         } catch (err) {
             setError(err.message);
@@ -69,7 +71,23 @@ export default function useUsers() {
         setIsLoading(false);
     }, []);
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById };
+    const handleUserEdit = useCallback(async (id, user) => {
+        setIsLoading(true);
+        setError(null);        
+        try {
+            await editUserData(id, normalizeUserToEdit(user));
+            setSnack("success", "User edited successfully!");
+            setTimeout(() => {
+                navigate(ROUTES.USER_PROFILE);
+            }, 2000);
+        } catch (err) {
+            setError(err.message);
+            setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    }, []);
+
+    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit };
 }
 
 

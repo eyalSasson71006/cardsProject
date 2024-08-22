@@ -35,7 +35,10 @@ export default function Router() {
 				element={<EditCardPage />}
 			/>
 			<Route path={ROUTES.USER_PROFILE} element={<UserProfilePage />} />
-			<Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
+			<Route
+				path={ROUTES.EDIT_USER + "/:id"}
+				element={<EditUserPage />}
+			/>
 
 			<Route path={ROUTES.SANDBOX} element={<SandboxPage />} />
 			<Route path="*" element={<ErrorPage />} />
