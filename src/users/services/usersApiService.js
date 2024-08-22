@@ -48,3 +48,23 @@ export const getAllUsersData = async () => {
         throw new Error(err.message);
     }
 }; 
+
+export const deleteUser = async (id) => {
+    
+    try {
+        const response = await axios.delete(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+}; 
+
+export const toggleBusinessUser = async (id) => {
+    
+    try {
+        const response = await axios.patch(`${apiUrl}/${id}`);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+}; 

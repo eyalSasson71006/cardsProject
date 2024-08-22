@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useCurrentUser } from "../providers/UserProvider";
-import { editUserData, getAllUsersData, getUserData, login, signup } from "../services/usersApiService";
+import { deleteUser, editUserData, getAllUsersData, getUserData, login, signup, toggleBusinessUser } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
@@ -14,12 +14,12 @@ export default function useUsers() {
     const [error, setError] = useState();
     const { setUser, setToken } = useCurrentUser();
     const navigate = useNavigate();
-    const setSnack = useSnack()	
+    const setSnack = useSnack();
 
-    useAxios()
+    useAxios();
 
     const handleLogin = useCallback(async (userLogin) => {
-        setError(null)
+        setError(null);
         setIsLoading(true);
         try {
             const token = await login(userLogin);
@@ -43,27 +43,27 @@ export default function useUsers() {
     const handleSignup = useCallback(async (user) => {
         setIsLoading(true);
         setError(null);
-        try {            
+        try {
             await signup(normalizeUser(user));
             await handleLogin({
                 email: user.email,
                 password: user.password
             });
-            setSnack("success", "Signed up successfully!")
+            setSnack("success", "Signed up successfully!");
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
         }
         setIsLoading(false);
     }, []);
-    
+
     const getUserById = useCallback(async (id) => {
         setIsLoading(true);
         setError(null);
-        try {            
+        try {
             let user = await getUserData(id);
-            setIsLoading(false);            
-            return user
+            setIsLoading(false);
+            return user;
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
@@ -73,7 +73,7 @@ export default function useUsers() {
 
     const handleUserEdit = useCallback(async (id, user) => {
         setIsLoading(true);
-        setError(null);        
+        setError(null);
         try {
             await editUserData(id, normalizeUserToEdit(user));
             setSnack("success", "User edited successfully!");
@@ -101,7 +101,33 @@ export default function useUsers() {
         setIsLoading(false);
     }, []);
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit, handleGetAllUsers };
+    const handleDeleteUser = useCallback(async (id) => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            await deleteUser(id);
+            setSnack("success", "User Deleted successfully!");
+        } catch (err) {
+            setError(err.message);
+            setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    }, []);
+    
+    const handleToggleBusinessUser = useCallback(async (id) => {
+        setIsLoading(true);
+        setError(null);        
+        try {
+            await toggleBusinessUser(id);
+            setSnack("success", "User Business status changed successfully!");
+        } catch (err) {
+            setError(err.message);
+            setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    }, []);
+
+    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit, handleGetAllUsers, handleDeleteUser, handleToggleBusinessUser };
 }
 
 
