@@ -38,3 +38,13 @@ export const editUserData = async (id , normalizedUser) => {
         throw new Error(err.message);
     }
 }; 
+
+export const getAllUsersData = async () => {
+    
+    try {
+        const response = await axios.get(apiUrl);
+        return response.data;
+    } catch (err) {
+        throw new Error(err.message);
+    }
+}; 

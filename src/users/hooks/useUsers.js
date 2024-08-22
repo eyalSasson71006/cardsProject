@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useCurrentUser } from "../providers/UserProvider";
-import { editUserData, getUserData, login, signup } from "../services/usersApiService";
+import { editUserData, getAllUsersData, getUserData, login, signup } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
@@ -87,7 +87,21 @@ export default function useUsers() {
         setIsLoading(false);
     }, []);
 
-    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit };
+    const handleGetAllUsers = useCallback(async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            let users = await getAllUsersData();
+            setIsLoading(false);
+            return users;
+        } catch (err) {
+            setError(err.message);
+            setSnack("error", err.message);
+        }
+        setIsLoading(false);
+    }, []);
+
+    return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit, handleGetAllUsers };
 }
 
 

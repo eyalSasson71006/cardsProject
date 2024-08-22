@@ -13,6 +13,7 @@ import AddCardPage from "../cards/pages/AddCardPage.jsx";
 import EditCardPage from "../cards/pages/EditCardPage.jsx";
 import UserProfilePage from "../users/pages/UserProfilePage.jsx";
 import EditUserPage from "../users/pages/EditUserPage.jsx";
+import AdminCRMPage from "../users/pages/AdminCRMPage.jsx";
 
 export default function Router() {
 	return (
@@ -38,6 +39,7 @@ export default function Router() {
 				path={ROUTES.EDIT_USER + "/:id"}
 				element={<EditUserPage />}
 			/>
+			<Route path={ROUTES.ADMIN_CRM} element={<AdminCRMPage />} />
 
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>

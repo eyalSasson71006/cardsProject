@@ -11,5 +11,6 @@ const ROUTES = {
     LOGIN: "/login",
     USER_PROFILE: "/user-info",
     EDIT_USER: "/edit-user",
+    ADMIN_CRM: "/admin-crm",
 };
 export default ROUTES;
