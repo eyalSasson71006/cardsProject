@@ -7,10 +7,10 @@ import ROUTES from "../../../routes/routesModel";
 import { useCurrentUser } from '../../../users/providers/UserProvider';
 
 
-export default function LeftNavBar() {
+export default function LeftNavBar({sx}) {
 	const {user} = useCurrentUser()
   return (
-		<Box sx={{ display: "flex", alignItems: "center" }}>
+		<Box sx={{ display: "flex", alignItems: "center", ...sx }}>
 			<LogoIcon />
 			<Logo />
 			<NavBarItem to={ROUTES.ABOUT} label={"About"} />

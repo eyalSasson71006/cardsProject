@@ -21,7 +21,6 @@ export default function SearchBar() {
 		<OutlinedInput
 			sx={{
 				m: 1,
-				width: "25ch",
 				borderRadius: "5px",
 				backgroundColor: theme.bgc,
 			}}
