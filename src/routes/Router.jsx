@@ -7,7 +7,6 @@ import ROUTES from "./routesModel.js";
 import LoginPage from "../users/pages/LoginPage.jsx";
 import MyCards from "../cards/pages/MyCards.jsx";
 import SignupPage from "../users/pages/SignupPage.jsx";
-import SandboxPage from "../sandbox/SandboxPage.jsx";
 import FavoriteCards from "../cards/pages/FavoriteCards.jsx";
 import CardDetailsPage from "../cards/pages/CardDetailsPage.jsx";
 import AddCardPage from "../cards/pages/AddCardPage.jsx";
@@ -40,7 +39,6 @@ export default function Router() {
 				element={<EditUserPage />}
 			/>
 
-			<Route path={ROUTES.SANDBOX} element={<SandboxPage />} />
 			<Route path="*" element={<ErrorPage />} />
 		</Routes>
 	);
