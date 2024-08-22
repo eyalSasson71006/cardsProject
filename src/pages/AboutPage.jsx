@@ -1,21 +1,34 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
-import { Box, Container, Typography } from "@mui/material";
-import Footer from "../layout/footer/Footer";
+import { Container, Typography } from "@mui/material";
 
 export default function AboutPage() {
   return (
-    <>
-      <PageHeader
-        title="About"
-        subtitle="On this page you can find all business cards from all categories"
-      />
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography sx={{ m: 2 }}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit vel voluptates, inventore minus in ut? Quam officia a, ullam cupiditate consequatur quo tempore quos architecto facilis impedit, veniam voluptatibus ipsum dolorem voluptatum commodi enim repudiandae molestiae! Voluptates provident sed ratione eligendi quas numquam atque, alias rerum aut quasi, labore eveniet asperiores maxime, architecto repellat cumque maiores adipisci placeat porro accusantium fugit culpa nam distinctio! Voluptates est ut ducimus non blanditiis! Itaque exercitationem, vitae qui voluptate porro et nemo asperiores ea sunt ipsam eius quos hic ducimus praesentium. Illo dolores porro doloremque, necessitatibus accusamus eaque iusto fuga iste delectus pariatur? Tempore facilis expedita tenetur in excepturi, quasi possimus commodi ad atque sequi laboriosam, quo veritatis, amet magni non eaque. Tenetur vitae placeat quidem? Animi, ipsa! Asperiores debitis, totam quidem, soluta tempore fuga officiis aliquid earum laudantium ut deleniti quia sint eveniet impedit temporibus, unde ad dicta eligendi quibusdam veritatis vitae autem?
-        </Typography>
-        <img style={{width:"100%", maxWidth:"300px"}} src="/cardPreview.png" alt="card preview" />
-      </Box>
-    </>
+		<>
+			<PageHeader
+				title="About"
+				subtitle="Discover How BCard Brings Businesses and Users Together"
+			/>
+			<Container sx={{ display: "flex", alignItems: "center" }}>
+				<Typography sx={{ m: 6 }}>
+					Welcome to BCard, your go-to platform for connecting
+					businesses and customers through personalized business
+					cards. Whether you're a business owner looking to showcase
+					your brand or a consumer searching for services, BCard makes
+					it easy. Business owners can sign up, create, and display
+					their unique business cards, allowing them to reach a
+					broader audience. As a visitor, you can explore and discover
+					businesses, and if you sign up, you can even like and save
+					your favorite cards. BCard is more than just a directory;
+					it’s a community where businesses and customers connect and
+					grow together.
+				</Typography>
+				<img
+					style={{ width: "100%", maxWidth: "250px" }}
+					src="/cardPreview.png"
+					alt="card preview"
+				/>
+			</Container>
+		</>
   );
 }
