@@ -29,15 +29,19 @@ export default function useUsers() {
             navigate(ROUTES.CARDS);
         } catch (err) {
             setError(err.message);
-            setSnack("error", err.message);
+            setSnack("error", err.message);            
         }
         setIsLoading(false);
     }
-        , []);
-
+    , []);
+    
     const handleLogout = useCallback(() => {
-        removeToken();
-        setUser(null);
+        try {
+            removeToken();
+            setUser(null);
+        } catch (err) {
+            setSnack("error", err.message);
+        }
     }, []);
 
     const handleSignup = useCallback(async (user) => {

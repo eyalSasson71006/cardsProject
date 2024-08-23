@@ -74,8 +74,12 @@ export default function useCards() {
     }, []);
 
     const handleDelete = useCallback((id) => {
-        deleteCard(id);
-        setSnack("info", `Card ${id} was deleted successfully`);
+        try {            
+            deleteCard(id);
+            setSnack("info", `Card ${id} was deleted successfully`);
+        } catch (err) {
+            setSnack("error", err.message);
+        }
     }, []);
 
     const handleEdit = useCallback(async (id, card) => {        
@@ -93,8 +97,12 @@ export default function useCards() {
 
 
     const handleLike = useCallback(async (id) => {
-        let card = await changeLikeStatus(id);
-        return card.likes.includes(user._id);
+        try {            
+            let card = await changeLikeStatus(id);
+            return card.likes.includes(user._id);
+        } catch (err) {
+            setSnack("error", err.message);
+        }
     }, [user]);
 
     return { cards, myCards, error, isLoading, card, getCardsById, HandleGetMyCards, getAllCards, handleCreateCard, handleDelete, handleLike, handleEdit };
