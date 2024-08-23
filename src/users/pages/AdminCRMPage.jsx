@@ -8,6 +8,7 @@ import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import { useCurrentUser } from "../providers/UserProvider";
 import PageHeader from "../../components/PageHeader";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function AdminCRMPage() {
   	const {
@@ -19,6 +20,7 @@ export default function AdminCRMPage() {
 	} = useUsers();
 	const [allUsers, setAllUsers] = useState();
   const {user} = useCurrentUser()
+  const { searchInput } = useSearchContext();
 
 	useEffect(() => {
 		const getData = async () => {
@@ -49,7 +51,7 @@ export default function AdminCRMPage() {
 						<TableCell></TableCell>
 					</TableHead>
 					<CrmTable
-						allUsers={allUsers}
+						allUsers={allUsers.filter(user => user.name.first.includes(searchInput))}
 						handleDeleteUser={handleDeleteUser}
 						handleToggleBusinessUser={handleToggleBusinessUser}
 					/>

@@ -113,10 +113,10 @@ export default function useUsers() {
         }
         setIsLoading(false);
     }, []);
-    
+
     const handleToggleBusinessUser = useCallback(async (id) => {
         setIsLoading(true);
-        setError(null);        
+        setError(null);
         try {
             await toggleBusinessUser(id);
             setSnack("success", "User Business status changed successfully!");
