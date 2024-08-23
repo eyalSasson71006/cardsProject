@@ -9,11 +9,16 @@ import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function UserProfilePage() {
 	const { user } = useCurrentUser();
 	const { getUserById, error, isLoading } = useUsers();
 	const [userData, setUserData] = useState();
+
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
 

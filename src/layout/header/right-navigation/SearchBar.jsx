@@ -11,25 +11,30 @@ import { useSearchContext } from "../../../providers/SearchProvider";
 
 export default function SearchBar() {
 	const theme = useTheme();
-	const { setSearchInput } = useSearchContext();
+	const { setSearchInput, searchVisibility, setSearchVisibility } =
+		useSearchContext();
 
 	const handleSearch = (e) => {
 		const { value } = e.target;
 		setSearchInput(value);
 	};
 	return (
-		<OutlinedInput
-			sx={{
-				m: 1,
-				borderRadius: "5px",
-				backgroundColor: theme.bgc,
-			}}
-			onChange={handleSearch}
-			endAdornment={
-				<InputAdornment position="end">
-					<SearchIcon />
-				</InputAdornment>
-			}
-		></OutlinedInput>
+		<>
+			{searchVisibility && (
+				<OutlinedInput
+					sx={{
+						m: 1,
+						borderRadius: "5px",
+						backgroundColor: theme.bgc,
+					}}
+					onChange={handleSearch}
+					endAdornment={
+						<InputAdornment position="end">
+							<SearchIcon />
+						</InputAdornment>
+					}
+				></OutlinedInput>
+			)}
+		</>
 	);
 }

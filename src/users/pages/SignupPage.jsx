@@ -8,6 +8,7 @@ import signupSchema from "../models/signupSchema";
 import { Container } from "@mui/material";
 import SignupForm from "../components/SignupForm";
 import useUsers from "../hooks/useUsers";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function SignupPage() {
 	const { handleSignup } = useUsers();
@@ -20,6 +21,10 @@ export default function SignupPage() {
 		onSubmit,
 		handleChangeCheckBox,
 	} = useForm(initialSignupForm, signupSchema, handleSignup);
+
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	const { user } = useCurrentUser();
 

@@ -9,7 +9,9 @@ import { useSearchContext } from "../../providers/SearchProvider";
 export default function CardsPage() {
 	const { user } = useCurrentUser();
 	const { cards, error, isLoading, getAllCards } = useCards();
-	const { searchInput } = useSearchContext();
+	const { searchInput, setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(true);
 
 	useEffect(() => {
 		getAllCards();

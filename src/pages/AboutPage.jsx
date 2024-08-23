@@ -1,15 +1,25 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
 import { Container, Grid, Typography } from "@mui/material";
+import { useSearchContext } from "../providers/SearchProvider";
 
 export default function AboutPage() {
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 	return (
 		<>
 			<PageHeader
 				title="About"
 				subtitle="Discover How BCard Brings Businesses and Users Together"
 			/>
-			<Grid container spacing={2} justifyContent="center" alignItems={"center"} mt={4}>
+			<Grid
+				container
+				spacing={2}
+				justifyContent="center"
+				alignItems={"center"}
+				mt={4}
+			>
 				<Grid item xs={12} md={8}>
 					<Typography>
 						Welcome to BCard, your go-to platform for connecting

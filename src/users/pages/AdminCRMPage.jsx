@@ -1,4 +1,10 @@
-import { Paper, Table, TableCell, TableContainer, TableHead } from "@mui/material";
+import {
+	Paper,
+	Table,
+	TableCell,
+	TableContainer,
+	TableHead,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CrmTable from "../components/CrmTable";
 import useUsers from "../hooks/useUsers";
@@ -11,7 +17,7 @@ import PageHeader from "../../components/PageHeader";
 import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function AdminCRMPage() {
-  	const {
+	const {
 		isLoading,
 		error,
 		handleGetAllUsers,
@@ -19,8 +25,9 @@ export default function AdminCRMPage() {
 		handleToggleBusinessUser,
 	} = useUsers();
 	const [allUsers, setAllUsers] = useState();
-  const {user} = useCurrentUser()
-  const { searchInput } = useSearchContext();
+	const { user } = useCurrentUser();
+	const { searchInput, setSearchVisibility } = useSearchContext();
+	setSearchVisibility(true);
 
 	useEffect(() => {
 		const getData = async () => {
@@ -29,7 +36,7 @@ export default function AdminCRMPage() {
 		getData();
 	}, []);
 
-  if (!user || !user.isAdmin) return <Navigate to={ROUTES.ROOT} replace/>
+	if (!user || !user.isAdmin) return <Navigate to={ROUTES.ROOT} replace />;
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
 	return (
@@ -51,7 +58,9 @@ export default function AdminCRMPage() {
 						<TableCell></TableCell>
 					</TableHead>
 					<CrmTable
-						allUsers={allUsers.filter(user => user.name.first.includes(searchInput))}
+						allUsers={allUsers.filter((user) =>
+							user.name.first.includes(searchInput)
+						)}
 						handleDeleteUser={handleDeleteUser}
 						handleToggleBusinessUser={handleToggleBusinessUser}
 					/>

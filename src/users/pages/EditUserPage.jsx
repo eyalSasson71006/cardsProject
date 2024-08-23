@@ -12,11 +12,16 @@ import mapUserToModel from "../helpers/normalization/mapUserToModel";
 import initialEditForm from "../helpers/initialForms/initialEditForm";
 import editSchema from "../models/editSchema";
 import EditForm from "../components/EditForm";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function EditUserPage() {
 	const { handleUserEdit, getUserById } = useUsers();
 	const { id } = useParams();
 	const { user } = useCurrentUser();
+
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	const {
 		data,
@@ -39,7 +44,7 @@ export default function EditUserPage() {
 	}, [id]);
 
 	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
-  
+
 	return (
 		<Container
 			sx={{

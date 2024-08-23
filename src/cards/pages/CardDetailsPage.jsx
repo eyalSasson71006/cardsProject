@@ -10,15 +10,18 @@ import Error from "../../components/Error";
 import { changeLikeStatus } from "../services/cardsApiService";
 import { useCurrentUser } from "../../users/providers/UserProvider";
 import CardActionBar from "../components/card/CardActionBar";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function CardDetailsPage() {
 	const { card, getCardsById, isLoading, error } = useCards();
 	const { id } = useParams();
-	const { user } = useCurrentUser();
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	useEffect(() => {
 		getCardsById(id);
-	}, [id]);	
+	}, [id]);
 
 	if (isLoading) return <Spinner />;
 	if (error) return <Error errorMessage={error} />;
@@ -85,7 +88,7 @@ export default function CardDetailsPage() {
 						fontWeight: "bold",
 					}}
 				>
-					<CardActionBar card={card}/>
+					<CardActionBar card={card} />
 				</Typography>
 			</Container>
 		</Box>

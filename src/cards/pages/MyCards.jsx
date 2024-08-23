@@ -18,7 +18,9 @@ export default function MyCards() {
 		handleDelete,
 		handleLike,
 	} = useCards();
-	const { searchInput } = useSearchContext();
+	const { searchInput, setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(true);
 
 	useEffect(() => {
 		HandleGetMyCards();

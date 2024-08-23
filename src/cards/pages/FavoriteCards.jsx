@@ -12,7 +12,9 @@ export default function FavoriteCards() {
 	const { user } = useCurrentUser();
 	const { cards, error, isLoading, getAllCards, handleDelete, handleLike } =
 		useCards();
-	const { searchInput } = useSearchContext();
+	const { searchInput, setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(true);
 
 	useEffect(() => {
 		getAllCards();

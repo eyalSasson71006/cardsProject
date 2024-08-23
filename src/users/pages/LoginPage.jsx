@@ -8,14 +8,17 @@ import loginSchema from "../models/loginSchema";
 import useForm from "../../forms/hooks/useForm";
 import { Container } from "@mui/material";
 import useUsers from "../hooks/useUsers";
-
-
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function LoginPage() {
 	const { user } = useCurrentUser();
 	const { handleLogin } = useUsers();
 	const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
 		useForm(initialLoginForm, loginSchema, handleLogin);
+
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	if (user) return <Navigate to={ROUTES.ROOT} replace />;
 
@@ -42,4 +45,3 @@ export default function LoginPage() {
 		</>
 	);
 }
-

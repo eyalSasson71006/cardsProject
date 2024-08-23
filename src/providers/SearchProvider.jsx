@@ -4,9 +4,17 @@ const SearchContext = createContext();
 
 export default function SearchProvider({ children }) {
 	const [searchInput, setSearchInput] = useState("");
+	const [searchVisibility, setSearchVisibility] = useState(true);
 
 	return (
-		<SearchContext.Provider value={{ searchInput, setSearchInput }}>
+		<SearchContext.Provider
+			value={{
+				searchInput,
+				setSearchInput,
+				searchVisibility,
+				setSearchVisibility,
+			}}
+		>
 			{children}
 		</SearchContext.Provider>
 	);

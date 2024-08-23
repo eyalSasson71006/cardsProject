@@ -10,10 +10,11 @@ import useForm from "../../forms/hooks/useForm";
 import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import { useCurrentUser } from "../../users/providers/UserProvider";
 import ROUTES from "../../routes/routesModel";
+import { useSearchContext } from "../../providers/SearchProvider";
 
 export default function EditCardPage() {
 	const { handleEdit, getCardsById, isLoading, error } = useCards();
-	const {user} = useCurrentUser()
+	const { user } = useCurrentUser();
 	const { id } = useParams();
 	const {
 		data,
@@ -23,9 +24,13 @@ export default function EditCardPage() {
 		handleReset,
 		validateForm,
 		onSubmit,
-	} = useForm(initialCardForm, cardSchema, ()=>{
-        handleEdit(id, data)
-    });
+	} = useForm(initialCardForm, cardSchema, () => {
+		handleEdit(id, data);
+	});
+
+	const { setSearchVisibility } = useSearchContext();
+
+	setSearchVisibility(false);
 
 	useEffect(() => {
 		const getData = async () => {
