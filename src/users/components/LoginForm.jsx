@@ -5,6 +5,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import PasswordInput from "../../forms/components/PasswordInput";
 
 export default function LoginForm({
 	onSubmit,
@@ -30,13 +31,9 @@ export default function LoginForm({
 				error={errors.email}
 				onChange={onInputChange}
 				data={data}
-				// sm={6}
 				required={true}
 			/>
-			<Input
-				name="password"
-				label="Password"
-				type="password"
+			<PasswordInput
 				error={errors.password}
 				onChange={onInputChange}
 				data={data}
