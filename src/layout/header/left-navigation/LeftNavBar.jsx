@@ -14,7 +14,7 @@ export default function LeftNavBar({sx}) {
 			<LogoIcon />
 			<Logo />
 			<NavBarItem to={ROUTES.ABOUT} label={"About"} />
-			{user && <NavBarItem to={ROUTES.CARDS} label={"FAV CARDS"} />}
+			{user && <NavBarItem to={ROUTES.FAV_CARDS} label={"FAV CARDS"} />}
 			{user && user.isBusiness && <NavBarItem to={ROUTES.MY_CARDS} label={"MY CARDS"} />}
 			{user && user.isAdmin && <NavBarItem to={ROUTES.ADMIN_CRM} label={"Admin CRM"} />}
 		</Box>
