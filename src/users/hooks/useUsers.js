@@ -122,8 +122,8 @@ export default function useUsers() {
         setIsLoading(true);
         setError(null);
         try {
-            await toggleBusinessUser(id);
-            setSnack("success", "User Business status changed successfully!");
+            let userData = await toggleBusinessUser(id);
+            setSnack("success", `User Business status toggled ${userData.isBusiness ? "ON" : "OFF"} successfully!`);
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
