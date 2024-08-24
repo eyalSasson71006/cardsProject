@@ -52,7 +52,6 @@ export default function AdminCRMPage() {
 						<TableCell>Name</TableCell>
 						<TableCell>Email</TableCell>
 						<TableCell>Phone</TableCell>
-						<TableCell>ID</TableCell>
 						<TableCell>Admin?</TableCell>
 						<TableCell>Business?</TableCell>
 						<TableCell></TableCell>

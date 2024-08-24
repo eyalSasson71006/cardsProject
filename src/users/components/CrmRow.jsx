@@ -15,9 +15,10 @@ export default function CrmRow({ user, handleDeleteUser, handleToggleBusinessUse
 			<TableCell>
 				{user.name.first} {user.name.last}
 			</TableCell>
-			<TableCell>{user.email}</TableCell>
+			<TableCell sx={{ maxWidth: "300px", overflowWrap: "break-word" }}>
+				{user.email}
+			</TableCell>
 			<TableCell>{user.phone}</TableCell>
-			<TableCell>{user._id}</TableCell>
 			<TableCell align="center">
 				{user.isAdmin ? <CheckCircleOutlineIcon /> : <BlockIcon />}
 			</TableCell>
