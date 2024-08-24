@@ -25,7 +25,7 @@ export default function CrmRow({ user, handleDeleteUser, handleToggleBusinessUse
 			<TableCell align="center">
 				{user.isBusiness ? <CheckCircleOutlineIcon /> : <BlockIcon />}
 			</TableCell>
-			<TableCell sx={{ display: "flex", gap: "15px" }}>
+			<TableCell align='right' sx={{ display: "flex", gap: "15px" }}>
 				<Button
 					color="error"
 					variant="contained"

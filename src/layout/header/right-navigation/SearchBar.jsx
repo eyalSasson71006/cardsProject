@@ -27,6 +27,7 @@ export default function SearchBar() {
 						borderRadius: "5px",
 						backgroundColor: theme.bgc,
 					}}
+					placeholder="Search"
 					onChange={handleSearch}
 					endAdornment={
 						<InputAdornment position="end">
