@@ -16,8 +16,9 @@ export default function CardDetailsPage() {
 	const { card, getCardsById, isLoading, error } = useCards();
 	const { id } = useParams();
 	const { setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(false);
+	useEffect(()=>{
+		setSearchVisibility(false);
+	},[])
 
 	useEffect(() => {
 		getCardsById(id);

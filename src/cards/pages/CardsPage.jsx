@@ -10,8 +10,10 @@ export default function CardsPage() {
 	const { user } = useCurrentUser();
 	const { cards, error, isLoading, getAllCards } = useCards();
 	const { searchInput, setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(true);
+	
+	useEffect(() => {
+		setSearchVisibility(true);
+	}, []);
 
 	useEffect(() => {
 		getAllCards();

@@ -20,8 +20,9 @@ export default function EditUserPage() {
 	const { user } = useCurrentUser();
 
 	const { setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(false);
+	useEffect(()=>{
+		setSearchVisibility(false);
+	},[])
 
 	const {
 		data,

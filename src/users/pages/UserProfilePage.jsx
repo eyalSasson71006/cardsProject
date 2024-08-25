@@ -17,8 +17,9 @@ export default function UserProfilePage() {
 	const [userData, setUserData] = useState();
 
 	const { setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(false);
+	useEffect(()=>{
+		setSearchVisibility(false);
+	},[])
 
 	if (!user) return <Navigate to={ROUTES.ROOT} replace />;
 

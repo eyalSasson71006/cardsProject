@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PageHeader from "../components/PageHeader";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -8,8 +8,9 @@ import { useSearchContext } from "../providers/SearchProvider";
 export default function ErrorPage() {
 	const navigate = useNavigate();
 	const { setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(false);
+	useEffect(()=>{
+		setSearchVisibility(false);
+	},[])
 	return (
 		<>
 			<PageHeader title="Error 404" subtitle="This page is not found" />

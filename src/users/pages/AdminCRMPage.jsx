@@ -27,7 +27,9 @@ export default function AdminCRMPage() {
 	const [allUsers, setAllUsers] = useState();
 	const { user } = useCurrentUser();
 	const { searchInput, setSearchVisibility } = useSearchContext();
-	setSearchVisibility(true);
+	useEffect(()=>{
+		setSearchVisibility(true);
+	},[])
 
 	useEffect(() => {
 		const getData = async () => {

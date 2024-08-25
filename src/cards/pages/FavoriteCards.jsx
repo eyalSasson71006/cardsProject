@@ -13,8 +13,9 @@ export default function FavoriteCards() {
 	const { cards, error, isLoading, getAllCards, handleDelete, handleLike } =
 		useCards();
 	const { searchInput, setSearchVisibility } = useSearchContext();
-
-	setSearchVisibility(true);
+	useEffect(()=>{
+		setSearchVisibility(true);
+	},[])
 
 	useEffect(() => {
 		getAllCards();
