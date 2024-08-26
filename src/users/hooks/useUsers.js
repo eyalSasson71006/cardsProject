@@ -18,29 +18,6 @@ export default function useUsers() {
 
     useAxios();
 
-    const handleLogin = useCallback(async (userLogin) => {
-        setError(null);
-        setIsLoading(true);
-        if (checkIfBanned(userLogin)) {
-            setSnack("error", "User is Banned, try again tomorrow...");
-            return;
-        }
-        try {
-            const token = await login(userLogin);
-            setTokenInLocalStorage(token);
-            setToken(token);
-            setUser(getUser());
-            navigate(ROUTES.CARDS);
-        } catch (err) {
-            addUserToBanList(userLogin);
-            setError(err.message);
-            setSnack("error", err.message);
-
-        }
-        setIsLoading(false);
-    }
-        , []);
-
     const checkIfBanned = (userLogin) => {
         let banList = getBanList();
         if (!banList || banList.length == 0) return false;
@@ -79,6 +56,29 @@ export default function useUsers() {
         }
 
     };
+
+    const handleLogin = useCallback(async (userLogin) => {
+        setError(null);
+        setIsLoading(true);
+        if (checkIfBanned(userLogin)) {
+            setSnack("error", "User is Banned, try again tomorrow...");
+            return;
+        }
+        try {
+            const token = await login(userLogin);
+            setTokenInLocalStorage(token);
+            setToken(token);
+            setUser(getUser());
+            navigate(ROUTES.CARDS);
+        } catch (err) {
+            addUserToBanList(userLogin);
+            setError(err.message);
+            setSnack("error", err.message);
+
+        }
+        setIsLoading(false);
+    }
+        , []);
 
     const handleLogout = useCallback(() => {
         try {
