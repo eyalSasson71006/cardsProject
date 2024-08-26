@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
 const TOKEN = 'my token'
+const BAN_LIST = "ban list"
 
 export const setTokenInLocalStorage = (tokenStr)=>{
     localStorage.setItem(TOKEN, tokenStr)
@@ -21,3 +22,12 @@ export const getUser =()=>{
         return null
     }
 }
+
+export const setBanListInLocalStorage = (listObj)=>{
+    localStorage.setItem(BAN_LIST, JSON.stringify(listObj))
+}
+
+export const getBanList =()=>{
+    return JSON.parse(localStorage.getItem(BAN_LIST)) 
+}
+

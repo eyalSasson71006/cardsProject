@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useCurrentUser } from "../providers/UserProvider";
 import { deleteUser, editUserData, getAllUsersData, getUserData, login, signup, toggleBusinessUser } from "../services/usersApiService";
-import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
+import { getBanList, getUser, removeToken, setBanListInLocalStorage, setTokenInLocalStorage } from "../services/localStorageService";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
@@ -21,6 +21,10 @@ export default function useUsers() {
     const handleLogin = useCallback(async (userLogin) => {
         setError(null);
         setIsLoading(true);
+        if (checkIfBanned(userLogin)) {
+            setSnack("error", "User is Banned, try again tomorrow...");
+            return;
+        }
         try {
             const token = await login(userLogin);
             setTokenInLocalStorage(token);
@@ -28,13 +32,54 @@ export default function useUsers() {
             setUser(getUser());
             navigate(ROUTES.CARDS);
         } catch (err) {
+            addUserToBanList(userLogin);
             setError(err.message);
-            setSnack("error", err.message);            
+            setSnack("error", err.message);
+
         }
         setIsLoading(false);
     }
-    , []);
-    
+        , []);
+
+    const checkIfBanned = (userLogin) => {
+        let banList = getBanList();
+        if (!banList || banList.length == 0) return false;
+        let bannedUser = banList.find(user => user.email == userLogin.email);
+        if (!bannedUser) return false;
+        //check if 24 hours have passed
+        const currentTime = new Date().getTime();
+        const timeSinceFirstAttempt = currentTime - bannedUser.firstFailedAttempt;
+        if (timeSinceFirstAttempt > (24 * 60 * 60 * 1000)) {
+            banList.splice(banList.indexOf(bannedUser), 1);
+            setBanListInLocalStorage(banList);
+            return false;
+        }
+        return bannedUser.attempts >= 3 ? true : false;
+    };
+
+    const addUserToBanList = (userLogin) => {
+        let banList = getBanList() || [];
+        let bannedUser = banList.find(user => user.email == userLogin.email);
+        if (banList.length == 0 || !bannedUser) {
+            setBanListInLocalStorage([
+                ...banList,
+                {
+                    email: userLogin.email,
+                    attempts: 1,
+                    firstFailedAttempt: new Date().getTime()
+                }
+            ]);
+        } else {
+            setBanListInLocalStorage(banList.map(user => {
+                if (user.email == bannedUser.email) {
+                    user.attempts++;
+                }
+                return user;
+            }));
+        }
+
+    };
+
     const handleLogout = useCallback(() => {
         try {
             removeToken();
