@@ -4,6 +4,7 @@ import {
 	TableCell,
 	TableContainer,
 	TableHead,
+	TableRow,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CrmTable from "../components/CrmTable";
@@ -27,9 +28,9 @@ export default function AdminCRMPage() {
 	const [allUsers, setAllUsers] = useState();
 	const { user } = useCurrentUser();
 	const { searchInput, setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(true);
-	},[])
+	}, []);
 
 	useEffect(() => {
 		const getData = async () => {
@@ -50,13 +51,15 @@ export default function AdminCRMPage() {
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="Admin CRM Table">
 					<TableHead>
-						<TableCell>Image</TableCell>
-						<TableCell>Name</TableCell>
-						<TableCell>Email</TableCell>
-						<TableCell>Phone</TableCell>
-						<TableCell>Admin?</TableCell>
-						<TableCell>Business?</TableCell>
-						<TableCell></TableCell>
+						<TableRow>
+							<TableCell>Image</TableCell>
+							<TableCell>Name</TableCell>
+							<TableCell>Email</TableCell>
+							<TableCell>Phone</TableCell>
+							<TableCell>Admin?</TableCell>
+							<TableCell>Business?</TableCell>
+							<TableCell></TableCell>
+						</TableRow>
 					</TableHead>
 					<CrmTable
 						allUsers={allUsers.filter((user) =>

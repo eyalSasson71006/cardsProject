@@ -58,8 +58,6 @@ export default function useUsers() {
     };
 
     const handleLogin = useCallback(async (userLogin) => {
-        setError(null);
-        setIsLoading(true);
         if (checkIfBanned(userLogin)) {
             setSnack("error", "User is Banned, try again tomorrow...");
             return;
@@ -72,11 +70,8 @@ export default function useUsers() {
             navigate(ROUTES.CARDS);
         } catch (err) {
             addUserToBanList(userLogin);
-            setError(err.message);
             setSnack("error", err.message);
-
         }
-        setIsLoading(false);
     }
         , []);
 
@@ -90,8 +85,6 @@ export default function useUsers() {
     }, []);
 
     const handleSignup = useCallback(async (user) => {
-        setIsLoading(true);
-        setError(null);
         try {
             await signup(normalizeUser(user));
             await handleLogin({
@@ -100,10 +93,8 @@ export default function useUsers() {
             });
             setSnack("success", "Signed up successfully!");
         } catch (err) {
-            setError(err.message);
             setSnack("error", err.message);
         }
-        setIsLoading(false);
     }, []);
 
     const getUserById = useCallback(async (id) => {
@@ -121,19 +112,13 @@ export default function useUsers() {
     }, []);
 
     const handleUserEdit = useCallback(async (id, user) => {
-        setIsLoading(true);
-        setError(null);
         try {
             await editUserData(id, normalizeUserToEdit(user));
             setSnack("success", "User edited successfully!");
-            setTimeout(() => {
-                navigate(ROUTES.USER_PROFILE);
-            }, 2000);
+            navigate(ROUTES.USER_PROFILE);
         } catch (err) {
-            setError(err.message);
             setSnack("error", err.message);
         }
-        setIsLoading(false);
     }, []);
 
     const handleGetAllUsers = useCallback(async () => {
@@ -142,38 +127,31 @@ export default function useUsers() {
         try {
             let users = await getAllUsersData();
             setIsLoading(false);
+            setSnack("success", "All users are here!");
             return users;
         } catch (err) {
-            setError(err.message);
             setSnack("error", err.message);
         }
         setIsLoading(false);
     }, []);
 
     const handleDeleteUser = useCallback(async (id) => {
-        setIsLoading(true);
-        setError(null);
         try {
             await deleteUser(id);
             setSnack("success", "User Deleted successfully!");
         } catch (err) {
-            setError(err.message);
             setSnack("error", err.message);
         }
-        setIsLoading(false);
     }, []);
 
     const handleToggleBusinessUser = useCallback(async (id) => {
-        setIsLoading(true);
-        setError(null);
         try {
             let userData = await toggleBusinessUser(id);
             setSnack("success", `User Business status toggled ${userData.isBusiness ? "ON" : "OFF"} successfully!`);
+            return userData
         } catch (err) {
-            setError(err.message);
             setSnack("error", err.message);
         }
-        setIsLoading(false);
     }, []);
 
     return { isLoading, error, handleLogin, handleLogout, handleSignup, getUserById, handleUserEdit, handleGetAllUsers, handleDeleteUser, handleToggleBusinessUser };

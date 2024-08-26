@@ -31,21 +31,21 @@ export default function useCards() {
         }
         setIsLoading(false);
     }, []);
-    
+
     const getCardsById = useCallback(async (id) => {
         setIsLoading(true);
         try {
             let data = await getCard(id);
             setCard(data);
             setIsLoading(false);
-            return data
+            return data;
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
         }
         setIsLoading(false);
     }, []);
-    
+
     const HandleGetMyCards = useCallback(async () => {
         setIsLoading(true);
         try {
@@ -58,15 +58,13 @@ export default function useCards() {
         }
         setIsLoading(false);
     }, []);
-    
+
     const handleCreateCard = useCallback(async (card) => {
         try {
             setIsLoading(true);
             await createCard(card);
             setSnack("success", "Card added successfully!");
-            setTimeout(() => {
-                navigate(ROUTES.CARDS);
-            }, 2000);
+            navigate(ROUTES.CARDS);
         } catch (err) {
             setError(err.message);
             setSnack("error", err.message);
@@ -74,7 +72,7 @@ export default function useCards() {
     }, []);
 
     const handleDelete = useCallback((id) => {
-        try {            
+        try {
             deleteCard(id);
             setSnack("info", `Card ${id} was deleted successfully`);
         } catch (err) {
@@ -82,7 +80,7 @@ export default function useCards() {
         }
     }, []);
 
-    const handleEdit = useCallback(async (id, card) => {        
+    const handleEdit = useCallback(async (id, card) => {
         try {
             await editCard(id, normalizeCard(card));
             setSnack("success", "Card edited successfully!");
@@ -97,7 +95,7 @@ export default function useCards() {
 
 
     const handleLike = useCallback(async (id) => {
-        try {            
+        try {
             let card = await changeLikeStatus(id);
             return card.likes.includes(user._id);
         } catch (err) {
