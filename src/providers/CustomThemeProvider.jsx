@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 
 export default function CustomThemeProvider({ children }) {
 	const [isDark, setIsDark] = useState(false);
-	
+
 	const theme = createTheme({
 		palette: {
 			mode: isDark ? "dark" : "light",

@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import PageHeader from "../components/PageHeader";
-import { Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useSearchContext } from "../providers/SearchProvider";
 
 export default function AboutPage() {
 	const { setSearchVisibility } = useSearchContext();
 
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 	return (
 		<>
 			<PageHeader

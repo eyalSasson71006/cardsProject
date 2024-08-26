@@ -5,16 +5,16 @@ import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 import PasswordInput from "../../forms/components/PasswordInput";
 
 export default function SignupForm({
-  onSubmit,
-  onReset,
-  validateForm,
-  title,
-  errors,
-  data,
-  onInputChange,
-  handleChangeCheckBox,
+	onSubmit,
+	onReset,
+	validateForm,
+	title,
+	errors,
+	data,
+	onInputChange,
+	handleChangeCheckBox,
 }) {
-  return (
+	return (
 		<Form
 			onSubmit={onSubmit}
 			onReset={onReset}
@@ -152,5 +152,5 @@ export default function SignupForm({
 				/>
 			</Grid>
 		</Form>
-  );
+	);
 }

@@ -1,7 +1,5 @@
-import { Avatar, Button, TableBody, TableCell, TableRow } from "@mui/material";
+import { TableBody } from "@mui/material";
 import React from "react";
-import BlockIcon from "@mui/icons-material/Block";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CrmRow from "./CrmRow";
 
 export default function CrmTable({

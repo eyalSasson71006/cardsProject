@@ -1,8 +1,6 @@
 import {
-	IconButton,
 	InputAdornment,
 	OutlinedInput,
-	TextField,
 	useTheme,
 } from "@mui/material";
 import React from "react";
@@ -11,7 +9,7 @@ import { useSearchContext } from "../../../providers/SearchProvider";
 
 export default function SearchBar() {
 	const theme = useTheme();
-	const { setSearchInput, searchVisibility, setSearchVisibility } =
+	const { setSearchInput, searchVisibility } =
 		useSearchContext();
 
 	const handleSearch = (e) => {

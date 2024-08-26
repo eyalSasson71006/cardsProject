@@ -11,7 +11,9 @@ export default function Header() {
 				<LeftNavBar
 					sx={{ display: { md: "inline-flex", xs: "none" } }}
 				/>
-				<MobileNavBar sx={{ display: { md: "none", xs: "inline-flex" } }} />
+				<MobileNavBar
+					sx={{ display: { md: "none", xs: "inline-flex" } }}
+				/>
 				<RightNavbar />
 			</Toolbar>
 		</AppBar>

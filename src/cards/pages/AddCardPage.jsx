@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import React, { useEffect } from "react";
 import { useCurrentUser } from "../../users/providers/UserProvider";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import CardForm from "../components/CardForm";
 import useForm from "../../forms/hooks/useForm";
@@ -16,9 +16,9 @@ export default function AddCardPage() {
 	const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
 		useForm(initialCardForm, cardSchema, handleCreateCard);
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	if (!user || !user.isBusiness) return <Navigate to={ROUTES.ROOT} replace />;
 

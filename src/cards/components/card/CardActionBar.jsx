@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,7 +15,7 @@ export default function CardActionBar({ card }) {
 	const { user } = useCurrentUser();
 	const { handleDelete, handleLike } = useCards();
 	const [liked, setLiked] = useState(user && card.likes.includes(user._id));
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	function handleRender() {
 		if (!user) return false;

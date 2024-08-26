@@ -9,10 +9,10 @@ import SearchBar from "./SearchBar";
 
 export default function RightNavbar() {
 	const { user } = useCurrentUser();
-	
+
 	return (
 		<Box sx={{ display: "flex", alignItems: "center" }}>
-			<SearchBar/>
+			<SearchBar />
 			<SetDarkMode />
 			{user ? <Logged /> : <NotLogged />}
 		</Box>

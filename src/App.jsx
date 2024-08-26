@@ -20,7 +20,6 @@ function App() {
 					</UserProvider>
 				</SnackbarProvider>
 			</CustomThemeProvider>
-			//{" "}
 		</BrowserRouter>
 	);
 }

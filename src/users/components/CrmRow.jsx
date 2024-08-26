@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Avatar, Button, TableCell, TableRow } from "@mui/material";
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-export default function CrmRow({ user, handleDeleteUser, handleToggleBusinessUser }) {
+export default function CrmRow({
+	user,
+	handleDeleteUser,
+	handleToggleBusinessUser,
+}) {
 	const [isBusiness, setIsBusiness] = useState(user.isBusiness);
-	
-	const onToggleBusiness = async ()=>{
+
+	const onToggleBusiness = async () => {
 		let userData = await handleToggleBusinessUser(user._id);
 		setIsBusiness(userData.isBusiness);
-	}
+	};
 
 	return (
 		<TableRow>

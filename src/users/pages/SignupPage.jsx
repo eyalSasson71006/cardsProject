@@ -23,9 +23,9 @@ export default function SignupPage() {
 	} = useForm(initialSignupForm, signupSchema, handleSignup);
 
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	const { user } = useCurrentUser();
 

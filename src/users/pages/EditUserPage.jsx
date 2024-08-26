@@ -3,10 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import { useCurrentUser } from "../providers/UserProvider";
 import useForm from "../../forms/hooks/useForm";
-import initialSignupForm from "../helpers/initialForms/initialSignupForm";
-import signupSchema from "../models/signupSchema";
 import { Container } from "@mui/material";
-import SignupForm from "../components/SignupForm";
 import useUsers from "../hooks/useUsers";
 import mapUserToModel from "../helpers/normalization/mapUserToModel";
 import initialEditForm from "../helpers/initialForms/initialEditForm";
@@ -20,9 +17,9 @@ export default function EditUserPage() {
 	const { user } = useCurrentUser();
 
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	const {
 		data,

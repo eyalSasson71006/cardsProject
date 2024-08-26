@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useCurrentUser } from "../../../users/providers/UserProvider";
 import ROUTES from "../../../routes/routesModel";
 
-export default function MobileNavBar({sx}) {
+export default function MobileNavBar({ sx }) {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 	const { user } = useCurrentUser();

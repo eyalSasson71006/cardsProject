@@ -1,14 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Container, IconButton, Link, Typography } from "@mui/material";
+import { Box, Container, Link, Typography } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import Spinner from "../../components/Spinner";
 import useCards from "../hooks/useCards";
 import Error from "../../components/Error";
-import { changeLikeStatus } from "../services/cardsApiService";
-import { useCurrentUser } from "../../users/providers/UserProvider";
 import CardActionBar from "../components/card/CardActionBar";
 import { useSearchContext } from "../../providers/SearchProvider";
 
@@ -16,9 +12,9 @@ export default function CardDetailsPage() {
 	const { card, getCardsById, isLoading, error } = useCards();
 	const { id } = useParams();
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	useEffect(() => {
 		getCardsById(id);

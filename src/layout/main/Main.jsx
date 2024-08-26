@@ -1,10 +1,10 @@
-import { Box, useTheme } from '@mui/material';
-import React from 'react'
+import { Box, useTheme } from "@mui/material";
+import React from "react";
 
-export default function Main({children}) {
-  const theme = useTheme()
-  
-  return (
+export default function Main({ children }) {
+	const theme = useTheme();
+
+	return (
 		<Box
 			sx={{
 				minHeight: "85vh",
@@ -14,5 +14,5 @@ export default function Main({children}) {
 		>
 			{children}
 		</Box>
-  );
+	);
 }

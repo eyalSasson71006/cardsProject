@@ -19,9 +19,9 @@ export default function MyCards() {
 		handleLike,
 	} = useCards();
 	const { searchInput, setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(true);
-	},[])
+	}, []);
 
 	useEffect(() => {
 		HandleGetMyCards();

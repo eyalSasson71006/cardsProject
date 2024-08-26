@@ -29,9 +29,9 @@ export default function EditCardPage() {
 	});
 
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	useEffect(() => {
 		const getData = async () => {

@@ -17,9 +17,9 @@ export default function LoginPage() {
 		useForm(initialLoginForm, loginSchema, handleLogin);
 
 	const { setSearchVisibility } = useSearchContext();
-	useEffect(()=>{
+	useEffect(() => {
 		setSearchVisibility(false);
-	},[])
+	}, []);
 
 	if (user) return <Navigate to={ROUTES.ROOT} replace />;
 

@@ -148,7 +148,7 @@ export default function useUsers() {
         try {
             let userData = await toggleBusinessUser(id);
             setSnack("success", `User Business status toggled ${userData.isBusiness ? "ON" : "OFF"} successfully!`);
-            return userData
+            return userData;
         } catch (err) {
             setSnack("error", err.message);
         }

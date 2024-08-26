@@ -1,22 +1,25 @@
-import { Box } from '@mui/material';
-import React from 'react'
-import Logo from './logo/Logo';
-import LogoIcon from './logo/LogoIcon';
+import { Box } from "@mui/material";
+import React from "react";
+import Logo from "./logo/Logo";
+import LogoIcon from "./logo/LogoIcon";
 import NavBarItem from "../../../routes/components/NavBarItem";
 import ROUTES from "../../../routes/routesModel";
-import { useCurrentUser } from '../../../users/providers/UserProvider';
+import { useCurrentUser } from "../../../users/providers/UserProvider";
 
-
-export default function LeftNavBar({sx}) {
-	const {user} = useCurrentUser()
-  return (
+export default function LeftNavBar({ sx }) {
+	const { user } = useCurrentUser();
+	return (
 		<Box sx={{ display: "flex", alignItems: "center", ...sx }}>
 			<LogoIcon />
 			<Logo />
 			<NavBarItem to={ROUTES.ABOUT} label={"About"} />
 			{user && <NavBarItem to={ROUTES.FAV_CARDS} label={"FAV CARDS"} />}
-			{user && user.isBusiness && <NavBarItem to={ROUTES.MY_CARDS} label={"MY CARDS"} />}
-			{user && user.isAdmin && <NavBarItem to={ROUTES.ADMIN_CRM} label={"Admin CRM"} />}
+			{user && user.isBusiness && (
+				<NavBarItem to={ROUTES.MY_CARDS} label={"MY CARDS"} />
+			)}
+			{user && user.isAdmin && (
+				<NavBarItem to={ROUTES.ADMIN_CRM} label={"Admin CRM"} />
+			)}
 		</Box>
-  );
+	);
 }

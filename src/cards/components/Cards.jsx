@@ -3,9 +3,6 @@ import CardComponent from "./card/CardComponent";
 import { Container } from "@mui/material";
 
 export default function Cards({ cards }) {
-
-
-
 	return (
 		<Container
 			sx={{
@@ -15,10 +12,7 @@ export default function Cards({ cards }) {
 			}}
 		>
 			{cards.map((card) => (
-				<CardComponent
-					card={card}
-					key={card._id}
-				/>
+				<CardComponent card={card} key={card._id} />
 			))}
 		</Container>
 	);

@@ -7,9 +7,7 @@ import CardActionBar from "./CardActionBar";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 
-export default function CardComponent({
-	card
-}) {
+export default function CardComponent({ card }) {
 	const navigate = useNavigate();
 	return (
 		<Card
@@ -36,9 +34,7 @@ export default function CardComponent({
 					bizNumber={card.bizNumber}
 				/>
 			</CardActionArea>
-			<CardActionBar
-				card={card}
-			/>
+			<CardActionBar card={card} />
 		</Card>
 	);
 }
