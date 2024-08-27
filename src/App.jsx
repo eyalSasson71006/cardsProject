@@ -5,6 +5,7 @@ import UserProvider from "./users/providers/UserProvider";
 import CustomThemeProvider from "./providers/CustomThemeProvider";
 import SnackbarProvider from "./providers/SnackbarProvider";
 import SearchProvider from "./providers/SearchProvider";
+import "./index.css"
 
 function App() {
 	return (
