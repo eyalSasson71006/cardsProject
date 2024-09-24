@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const apiUrl = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users";
+export const apiUrl = "https://cardsserver-6cy7.onrender.com/users";
 
 export const login = async (userLogin) => {
     try {

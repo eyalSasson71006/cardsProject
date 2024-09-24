@@ -1,7 +1,8 @@
 import axios from "axios";
 import normalizeCard from "../helpers/normalization/normalizeCard";
 
-const apiUrl = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards";
+export const apiUrl = "https://cardsserver-6cy7.onrender.com/cards";
+
 
 export const getCards = async () => {
     try {
